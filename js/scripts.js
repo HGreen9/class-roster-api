@@ -23,3 +23,27 @@ fetch(dataSource)
       container.append(card);
     });
   })
+  
+  // Sparkle effect
+  const sparkleContainer = document.createElement('div');
+  sparkleContainer.className = 'sparkle-container';
+  document.body.appendChild(sparkleContainer);
+  
+  function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+  
+    const size = Math.random() * 10 + 5; 
+    sparkle.style.width = `${size}px`;
+    sparkle.style.height = `${size}px`;
+    sparkle.style.left = `${Math.random() * 100}%`; 
+    sparkle.style.animationDuration = `${Math.random() * 5 + 5}s`; 
+  
+    sparkleContainer.appendChild(sparkle);
+  
+    sparkle.addEventListener('animationend', () => {
+      sparkle.remove();
+    });
+  }
+  
+  setInterval(createSparkle, 100);

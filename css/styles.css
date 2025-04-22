@@ -1,16 +1,73 @@
-/* Styling */
+:root {
+      --spacing-s: 8px;
+      --spacing-m: 16px;
+      --spacing-l: 24px;
+      --spacing-xxl: 64px;
+      --width-container: 1200px;
+      --transition-fast: 200ms ease;
+    }
 
-/* Tempoarary Layout. Replace with your own */
+* { margin:0; padding:0; box-sizing:border-box; }
 
-main.roster {
-    /* 3 column grid */
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
-    margin: 1rem 0;
-}
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%);
+      display: flex; justify-content: center;
+      padding: var(--spacing-xxl) var(--spacing-l);
+      min-height: 100vh;
+    }
 
-figure img {
-    /*  */
-    width: 100%;
-}
+    .card-grid {
+      display: grid;
+      grid-gap: var(--spacing-l);
+      grid-template-columns: repeat(1,1fr);
+      max-width: var(--width-container);
+      width: 100%;
+    }
+
+    @media (min-width: 540px) { .card-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 960px) { .card-grid { grid-template-columns: repeat(4,1fr); } }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: ''; display: block;
+      padding-bottom: 150%; width: 100%;
+    }
+
+    .card__background {
+      position: absolute; top:0; left:0;
+      width:100%; height:100%;
+      background-size:cover; background-position:center;
+      filter: brightness(0.75);
+      transition: transform var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .card:hover .card__background {
+      transform: scale(1.05);
+      filter: brightness(0.5);
+    }
+
+    .card__content {
+      position: absolute;
+      left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.7);
+      padding: var(--spacing-l);
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 300ms ease;
+      text-align: center;
+    }
+    
+    .card:hover .card__content {
+      transform: translateY(0);
+    }
+
+    .card__heading { font-size: 1.25rem; margin-bottom: var(--spacing-s); }
+    .card__sub     { font-size: 1rem; margin-bottom: var(--spacing-m); }
+    .card__text    { font-size: 0.9rem; margin-bottom: var(--spacing-m); }
+    .card__motto   { font-size: 0.8rem; font-style: italic; }

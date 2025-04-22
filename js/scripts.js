@@ -1,33 +1,27 @@
-// Scripting
+const dataSource = 'https://assets.codepen.io/16425/Spring-2025-Roster.json';
+    const container = document.querySelector('.card-grid');
 
-// Data source
-const url = "https://assets.codepen.io/16425/web-3-spring-2024-roster.json";
+    fetch(dataSource)
+      .then(res => res.json())
+      .then(students => {
+        students.forEach(student => {
+          // Create anchor to get same semantics as your cards
+          const card = document.createElement('a');
+          card.href = '#';
+          card.className = 'card';
 
-// Get data
-fetch(url)
-  .then( response  => response.json())
-  .then( data  => {
-    
-    // check-check: is the data good?
-    console.log(data);
-    console.log(data.Name);
-    console.log(data.Image);
-
-    // get container for data
-    const roster = document.querySelector(".roster");
-
-    // loop through data
-    data.forEach( student => {
-      
-      // template
-      const template = `
-          <figure>
-            <figcaption> ${student.Name} </figcaption>
-            <img src=" ${student.Image} " alt=" ${student.Name} ">
-          </figure>
-       `;
-
-      // insert EACH `student` record into container
-      roster.insertAdjacentHTML("afterbegin", template);
-    });
-  });
+          // Build inner HTML using your JSON fields
+          card.innerHTML = `
+            <div class="card__background"
+                 style="background-image:url('${student.imageUrl.trim()}')"></div>
+            <div class="card__content">
+              <h3 class="card__heading">${student.name}</h3>
+              <p class="card__sub">${student.status}</p>
+              <p class="card__text">${student.talent}</p>
+              <p class="card__motto">"${student.motto}"</p>
+            </div>
+          `;
+          container.append(card);
+        });
+      })
+      .catch(err => console.error('Roster fetch failed:', err));

@@ -15,8 +15,8 @@ Use API endpoint for the _Collection_ provided in class.
 ## Citations
 Inspired by: https://codepen.io/hexagoncircle/pen/XWbWKwL & https://codepen.io/steveeeie/pen/NVWMEM
 
-[Font Share](https://www.fontshare.com/)
-[Figma](https://www.figma.com/)
+* [Font Share](https://www.fontshare.com/)
+* [Figma](https://www.figma.com/)
 
 With assistance from AI
 

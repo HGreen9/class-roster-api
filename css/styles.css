@@ -14,9 +14,11 @@
 
 body {
   background-image: linear-gradient(15deg, var(--floral-bg-start) 0%, var(--floral-bg-end) 150%);
-  display: flex; justify-content: center;
+  display: flex; 
+  justify-content: center;
   padding: var(--spacing-xxl) var(--spacing-l);
   min-height: 100vh;
+  border: 10px solid rgba(137, 191, 140, 0.894);
 }
 
 .card-grid {
